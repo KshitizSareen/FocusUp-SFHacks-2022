@@ -1,9 +1,12 @@
 import "./App.css";
+import { COLORS } from "./colors/colors";
 
 function App() {
   return (
     <div>
-      <h1>This is App.js</h1>
+      <div style={{ fontFamily: "MarkerFelt", color: COLORS.primary }}>
+        This is App.js
+      </div>
     </div>
   );
 }
