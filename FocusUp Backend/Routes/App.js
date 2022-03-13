@@ -89,4 +89,10 @@ router.get('/getchat/:focusgroupid',(req,res)=>{
     })
 })
 
+router.get('/getcomments/:postid',(req,res)=>{
+    db.collection('Posts').doc(req.params.postid).get().then(doc=>{
+        res.json(doc.data()["comments"]);
+    })
+})
+
 exports.router=router;
