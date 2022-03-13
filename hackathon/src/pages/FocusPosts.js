@@ -37,9 +37,9 @@ const FocusPosts = () => {
     });
   };
 
-  const goToChat= ()=> {
+  const goToChat = () => {
     history.push({
-      pathname:  `/focusUp/Chat/${focusGroupName}/${focusGroupId}`,
+      pathname: `/focusUp/Chat/${focusGroupName}/${focusGroupId}`,
       state: {
         focusGroupId: focusGroupId,
         focusGroupName: focusGroupName
@@ -56,7 +56,11 @@ const FocusPosts = () => {
             <Button className={styles.buttons} onClick={() => goToCreatePost()}>
               Create a Post and Share your Thoughts
             </Button>
-            <Button className={styles.buttons} onClick={() => goToChat()}>
+            <Button
+              className={styles.buttons}
+              onClick={() => goToChat()}
+              focusGroupName={focusGroupName}
+            >
               Go to chat
             </Button>
           </Row>
