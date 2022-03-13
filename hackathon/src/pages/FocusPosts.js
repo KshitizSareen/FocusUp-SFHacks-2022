@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Row, Button, Container } from "react-bootstrap";
@@ -8,6 +8,10 @@ import FocusPostsComponent from "../components/FocusPosts";
 import samplePost from "../images/samplePost.jpg";
 
 const FocusPosts = () => {
+
+  useEffect(()=>{
+    
+  },[]);
   const history = useHistory();
   const location = useLocation();
   const focusGroupId = location.state.focusGroupId;
@@ -49,6 +53,7 @@ const FocusPosts = () => {
             PageMaker including versions of Lorem Ipsum."
               />
               <FocusPostsComponent
+              image={null}
                 description="Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
