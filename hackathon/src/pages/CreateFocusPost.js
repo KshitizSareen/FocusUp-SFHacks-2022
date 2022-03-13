@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { useHistory, useLocation } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
+
 const CreateFocusPostPage = () => {
   const history = useHistory();
   const location = useLocation();

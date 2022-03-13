@@ -3,11 +3,13 @@ import { Form, Button } from "react-bootstrap";
 import { Paper, Box } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import storage from '../../Firebase';
+import { ref,getDownloadURL } from "firebase/storage";
 
 const CreatePostForm = () => {
-  const [uploaded_pic, setUploadedPic] = useState();
-  const [nickName, setNickName] = useState();
-  const [description, setDescription] = useState();
+  const [uploaded_pic, setUploadedPic] = useState("");
+  const [nickName, setNickName] = useState("");
+  const [description, setDescription] = useState("");
 
   const location = useLocation();
   const focusGroupId = location.state.focusGroupId;
@@ -26,15 +28,21 @@ const CreatePostForm = () => {
     setNickName(event.currentTarget.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     const form = event.currentTarget;
-
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
       const formData = new FormData();
-      formData.append("image", uploaded_pic);
+      let urls=[];
+      if(uploaded_pic!="")
+      {
+        const imageRef=await ref(storage,uploaded_pic);
+        const imageUrl=await getDownloadURL(imageRef)
+        formData.append("image", imageUrl);
+        urls.push(imageUrl);
+      }
       formData.append("nickName", nickName);
       formData.append("description", description);
       formData.append("focusGroupId", focusGroupId);
@@ -44,6 +52,16 @@ const CreatePostForm = () => {
           "content-type": "multipart/form-data"
         }
       };
+
+      axios.post('https://focusup-sfhacks2022.uc.r.appspot.com/api/createpost',{
+        "focusGroupID" : focusGroupId,
+        "description": description,
+        "urls" : urls
+      }).then((message)=>{
+        console.log(message);
+      }).catch(err=>{
+        console.log(err);
+      })
 
       //   axios
       //     .post(
@@ -108,7 +126,7 @@ const CreatePostForm = () => {
               ></textarea>
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button onClick={handleSubmit} variant="primary" type="submit">
               Submit
             </Button>
           </Form>
