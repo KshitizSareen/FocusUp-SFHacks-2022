@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Paper, Box } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
-import storage from '../../Firebase';
-import { ref,getDownloadURL,uploadBytes } from "firebase/storage";
+import storage from "../../Firebase";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { ThreeBounce } from "better-react-spinkit";
 
 const CreatePostForm = () => {
   const [uploaded_pic, setUploadedPic] = useState();
   const [nickName, setNickName] = useState();
   const [description, setDescription] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const location = useLocation();
+  const history = useHistory();
   const focusGroupId = location.state.focusGroupId;
   const focusGroupName = location.state.focusGroupName;
 
@@ -27,21 +30,26 @@ const CreatePostForm = () => {
     setNickName(event.currentTarget.value);
   };
 
+  const handleIsLoadedToggle = (value) => {
+    setIsLoaded(value);
+  };
+
   const handleSubmit = async (event) => {
+    setIsLoaded(true);
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
       const formData = new FormData();
-      let urls=[];
-      if(uploaded_pic!=null)
-      {
-        const imageRef=ref(storage,uploaded_pic.name)
-        await uploadBytes(imageRef,uploaded_pic);
-        const downloadUrl=await getDownloadURL(imageRef);
+      let urls = [];
+      if (uploaded_pic != null) {
+        const imageRef = ref(storage, uploaded_pic.name);
+        await uploadBytes(imageRef, uploaded_pic);
+        const downloadUrl = await getDownloadURL(imageRef);
         urls.push(downloadUrl);
-        formData.append("imageFile",downloadUrl);
+        formData.append("imageFile", downloadUrl);
       }
       formData.append("nickName", nickName);
       formData.append("description", description);
@@ -53,42 +61,41 @@ const CreatePostForm = () => {
         }
       };
 
-      if(focusGroupId!=null)
-      {
+      if (focusGroupId != null) {
+        axios
+          .post("https://focusup-sfhacks2022.uc.r.appspot.com/api/createpost", {
+            focusGroupID: focusGroupId,
+            description: description,
+            urls: urls
+          })
+          .then((message) => {
+            event.preventDefault();
+            console.log(message);
+            setIsLoaded(false);
 
-      axios.post('https://focusup-sfhacks2022.uc.r.appspot.com/api/createpost',{
-        "focusGroupID" : focusGroupId,
-        "description": description,
-        "urls" : urls
-      }).then((message)=>{
-        console.log(message);
-      }).catch(err=>{
-        console.log(err);
-      })
-    }
-
-      //   axios
-      //     .post(
-      //       "https://photobook-server-khushboo1028.herokuapp.com/upload",
-      //       formData,
-      //       config
-      //     )
-      //     .then((response) => {
-      //       console.log(response);
-
-      //       alert("Succesfully uploaded image");
-      //     })
-      //     .catch((error) => {
-      //       alert(error);
-      //       console.log(error);
-      //     });
-
-      event.preventDefault();
+            history.push({
+              pathname: `/focusUp/${focusGroupName}/${focusGroupId}`,
+              state: {
+                focusGroupId: focusGroupId,
+                focusGroupName: focusGroupName
+              }
+            });
+          })
+          .catch((err) => {
+            event.preventDefault();
+            setIsLoaded(false);
+            console.log(err);
+          });
+      }
     }
   };
 
   return (
     <div>
+      <div style={{ margin: "auto", width: "10%" }}>
+        {isLoaded && <ThreeBounce size={20} color="green" />}
+      </div>
+
       <Box
         sx={{
           display: "flex",
