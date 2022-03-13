@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b716e755.chunk.css",
+    "main.js": "/static/js/main.6cedd545.chunk.js",
+    "main.js.map": "/static/js/main.6cedd545.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.9b3f6dd7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.9b3f6dd7.js.map",
+    "static/css/2.0a9ec390.chunk.css": "/static/css/2.0a9ec390.chunk.css",
+    "static/js/2.96803deb.chunk.js": "/static/js/2.96803deb.chunk.js",
+    "static/js/2.96803deb.chunk.js.map": "/static/js/2.96803deb.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.0a9ec390.chunk.css.map": "/static/css/2.0a9ec390.chunk.css.map",
+    "static/css/main.b716e755.chunk.css.map": "/static/css/main.b716e755.chunk.css.map",
+    "static/js/2.96803deb.chunk.js.LICENSE.txt": "/static/js/2.96803deb.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/MarkerFelt.8f83a322.ttc",
+    "static/media/OCD.9e4f167b.png": "/static/media/OCD.9e4f167b.png",
+    "static/media/PTSD.58c3627c.png": "/static/media/PTSD.58c3627c.png",
+    "static/media/alcohol-abuse.eec8bede.png": "/static/media/alcohol-abuse.eec8bede.png",
+    "static/media/anxiety.828e34b8.png": "/static/media/anxiety.828e34b8.png",
+    "static/media/app-logo.080917e7.png": "/static/media/app-logo.080917e7.png",
+    "static/media/depression.e688d1c1.png": "/static/media/depression.e688d1c1.png",
+    "static/media/drug-abuse.f63a8d40.png": "/static/media/drug-abuse.f63a8d40.png",
+    "static/media/samplePost.b08cb0cd.jpg": "/static/media/samplePost.b08cb0cd.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9b3f6dd7.js",
+    "static/css/2.0a9ec390.chunk.css",
+    "static/js/2.96803deb.chunk.js",
+    "static/css/main.b716e755.chunk.css",
+    "static/js/main.6cedd545.chunk.js"
+  ]
+}
