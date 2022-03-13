@@ -31,7 +31,7 @@ router.post('/createpost',(req,res)=>{
 })
 
 router.get('/getpost/:focusgroupid',(req,res)=>{
-    db.collection('Posts').where('focusGroupID','==',Number.parseInt(req.params.focusgroupid)).get().then(docData=>{
+    db.collection('Posts').where('focusGroupID','==',req.params.focusgroupid).get().then(docData=>{
         res.json(docData.docs.map(data=>{
             return {
                 'id' : data.id,
