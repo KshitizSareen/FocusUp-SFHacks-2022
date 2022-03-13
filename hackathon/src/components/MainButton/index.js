@@ -11,19 +11,22 @@ const MainButton = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   let postID = props.id;
+  let focusGroupId = props.focusGroupId;
 
-  // //get comments
-  // useEffect(() => {
-  //   console.log("i am here");
-  //   axios
-  //     .get(
-  //       `https://focusup-sfhacks2022.uc.r.appspot.com/api/getpost/${postID}`
-  //     )
-  //     .then((data) => {
-  //       console.log(data);
-  //       setComments(data.data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    getcomments();
+  }, []);
+
+  const getcomments = (e) => {
+    axios
+      .get(
+        `https://focusup-sfhacks2022.uc.r.appspot.com/api/getcomments/${postID}`
+      )
+      .then((data) => {
+        console.log("From Main Button", data.data);
+        setComments(data.data);
+      });
+  };
 
   const shareComment = (event) => {
     console.log("comment is ", commentInput);
@@ -38,7 +41,8 @@ const MainButton = (props) => {
       })
       .then((message) => {
         console.log(message);
-        handleClose();
+        getcomments();
+        setCommentInput("");
       })
       .catch((err) => {
         console.log(err);
@@ -63,7 +67,7 @@ const MainButton = (props) => {
         {comments.map((e) => {
           return (
             <div>
-              <Modal.Body>{e.comment}</Modal.Body>
+              <Modal.Body>{e}</Modal.Body>
               <hr />
             </div>
           );
@@ -73,6 +77,7 @@ const MainButton = (props) => {
             type="text"
             placeholder="Write your comment!"
             onChange={handleChange}
+            value={commentInput}
           />
           <Button onClick={() => shareComment()}>Share</Button>
         </Modal.Footer>

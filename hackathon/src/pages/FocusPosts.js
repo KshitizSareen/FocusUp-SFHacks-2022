@@ -56,6 +56,7 @@ const FocusPosts = () => {
                     description={post.description}
                     id={post.id}
                     comments={post.comments}
+                    focusGroupId={focusGroupId}
                   />
                 );
               })}
