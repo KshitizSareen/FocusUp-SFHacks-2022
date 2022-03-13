@@ -1,11 +1,17 @@
 import React from "react";
 import { IconContext } from "react-icons";
-import { Nav, NavbarContainer, NavMenu } from "./NavbarElements";
+import {
+  Nav,
+  NavbarContainer,
+  NavMenu,
+  NavItem,
+  NavLinks
+} from "./NavbarElements";
 import appLogo from "../../images/app-logo.png";
 
-const Navbar = ({ toggle }) => {
+const Navbar = (props) => {
   return (
-    <IconContext.Provider value={{ color: "#272343" }}>
+    <IconContext.Provider>
       <Nav>
         <NavbarContainer>
           <NavMenu>
@@ -17,13 +23,13 @@ const Navbar = ({ toggle }) => {
               />
             </div>
 
-            {/* <NavItem>
-              <NavLinks exact activeClassName="active" to="/work">
-                Work
+            <NavItem>
+              <NavLinks exact activeClassName="" to="">
+                {props.title}
               </NavLinks>
             </NavItem>
 
-            <NavItem>
+            {/* <NavItem>
               <NavLinks exact activeClassName="active" to="/blog">
                 Blog
               </NavLinks>

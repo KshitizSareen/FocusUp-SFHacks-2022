@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { NavLink as LinkR } from "react-router-dom";
 
 export const Nav = styled.nav`
-  background: #fdfdfd;
+  background: #fff;
   height: 80px;
   /* margin-top: -80px; */
   display: flex;
@@ -34,24 +34,56 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavLinks = styled(LinkR)`
-  color: #021c35;
+  color: #3e5c5b;
   display: flex;
   align-items: center;
   text-decoration: none;
-  margin-top: 0.55rem;
-  font-family: "Monoid";
+  margin-top: 1.5rem;
+  font-family: "MarkerFelt";
   padding: 0 3rem;
   height: 100%;
   cursor: pointer;
-  font-size: 0.8rem;
-
-  &.active {
-    border-bottom: 0.1rem solid #021c35;
-  }
+  font-size: 3rem;
 
   &:hover {
-    color: #272343;
-    font-weight: bolder;
+    text-decoration: none;
+    color: #3e5c5b;
+  }
+`;
+
+export const NavLinks2 = styled(LinkR)`
+  color: #3e5c5b;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-top: 1.5rem;
+  font-family: "MarkerFelt";
+  padding: 0 3rem;
+  height: 100%;
+  cursor: pointer;
+  font-size: 3rem;
+
+  &:hover {
+    text-decoration: none;
+    color: #3e5c5b;
+  }
+`;
+
+export const NavLinksButton = styled(LinkR)`
+  color: #3e5c5b;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-top: 1rem;
+  font-family: "MarkerFelt";
+  padding: 0 3rem;
+  height: 100%;
+  cursor: pointer;
+  font-size: 3rem;
+
+  &:hover {
+    text-decoration: none;
+    color: #3e5c5b;
   }
 `;
 
