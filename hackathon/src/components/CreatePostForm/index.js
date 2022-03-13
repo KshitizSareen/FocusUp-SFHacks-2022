@@ -57,7 +57,7 @@ const CreatePostForm = () => {
 
       if (focusGroupId != null) {
         axios
-          .post("https://focusup-sfhacks2022.uc.r.appspot.com/api/createpost", {
+          .post("https://backendservice-dot-focusup-sfhacks2022.uc.r.appspot.com/api/createpost", {
             focusGroupID: focusGroupId,
             description: description,
             urls: urls

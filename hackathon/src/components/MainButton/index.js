@@ -30,7 +30,7 @@ const MainButton = (props) => {
 
     // event.preventDefault();
 
-    let url = `https://focusup-sfhacks2022.uc.r.appspot.com/api/createcomment/${postID}`;
+    let url = `https://backendservice-dot-focusup-sfhacks2022.uc.r.appspot.com/api/createcomment/${postID}`;
 
     axios
       .post(url, {

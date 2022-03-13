@@ -17,7 +17,7 @@ const FocusPosts = () => {
   useEffect(() => {
     axios
       .get(
-        "https://focusup-sfhacks2022.uc.r.appspot.com/api/getpost/" +
+        "https://backendservice-dot-focusup-sfhacks2022.uc.r.appspot.com/api/getpost/" +
           focusGroupId
       )
       .then((data) => {
