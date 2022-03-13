@@ -8,20 +8,23 @@ import axios from "axios";
 import samplePost from "../images/samplePost.jpg";
 
 const FocusPosts = () => {
-
-  const [posts,setPosts]=useState([]); 
+  const [posts, setPosts] = useState([]);
   const history = useHistory();
   const location = useLocation();
   const focusGroupId = location.state.focusGroupId;
   const focusGroupName = location.state.focusGroupName;
 
-
-  useEffect(()=>{
-    axios.get('https://focusup-sfhacks2022.uc.r.appspot.com/api/getpost/'+focusGroupId).then(data=>{
-      console.log(data.data);
-      setPosts(data.data);
-    })
-  },[]);
+  useEffect(() => {
+    axios
+      .get(
+        "https://focusup-sfhacks2022.uc.r.appspot.com/api/getpost/" +
+          focusGroupId
+      )
+      .then((data) => {
+        console.log(data.data);
+        setPosts(data.data);
+      });
+  }, []);
 
   const goToCreatePost = () => {
     console.log("Button clicked");
@@ -46,17 +49,16 @@ const FocusPosts = () => {
           </Row>
           <Row>
             <div style={{ margin: "auto", width: "60%" }}>
-              {
-                posts.map((post)=>{
-                  return(
-                    <FocusPostsComponent
+              {posts.map((post) => {
+                return (
+                  <FocusPostsComponent
                     image={post.media[0]}
                     description={post.description}
+                    id={post.id}
+                    comments={post.comments}
                   />
-                  )
-                }
-                )
-                }
+                );
+              })}
             </div>
           </Row>
         </Container>

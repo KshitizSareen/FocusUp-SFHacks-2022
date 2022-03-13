@@ -1,17 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
-// import ContactFormModal from "../ContactFormModal";
+import axios from "axios";
+
 const MainButton = (props) => {
   const [show, setShow] = useState(false);
   const [commentInput, setCommentInput] = useState("");
+  const [comments, setComments] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  let postID = props.id;
 
-  const shareComment = () => {
+  // //get comments
+  // useEffect(() => {
+  //   console.log("i am here");
+  //   axios
+  //     .get(
+  //       `https://focusup-sfhacks2022.uc.r.appspot.com/api/getpost/${postID}`
+  //     )
+  //     .then((data) => {
+  //       console.log(data);
+  //       setComments(data.data);
+  //     });
+  // }, []);
+
+  const shareComment = (event) => {
     console.log("comment is ", commentInput);
-    handleClose();
+
+    // event.preventDefault();
+
+    let url = `https://focusup-sfhacks2022.uc.r.appspot.com/api/createcomment/${postID}`;
+
+    axios
+      .post(url, {
+        comment: commentInput
+      })
+      .then((message) => {
+        console.log(message);
+        handleClose();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleChange = (e) => {
@@ -29,12 +60,14 @@ const MainButton = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>Comments</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Comment 1 here</Modal.Body>
-        <hr />
-        <Modal.Body>Comment 2 here</Modal.Body>
-        <hr />
-        <Modal.Body>Comment 3 here</Modal.Body>
-
+        {comments.map((e) => {
+          return (
+            <div>
+              <Modal.Body>{e.comment}</Modal.Body>
+              <hr />
+            </div>
+          );
+        })}
         <Modal.Footer>
           <Form.Control
             type="text"

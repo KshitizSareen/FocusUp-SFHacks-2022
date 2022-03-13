@@ -55,12 +55,6 @@ const CreatePostForm = () => {
       formData.append("description", description);
       formData.append("focusGroupId", focusGroupId);
 
-      const config = {
-        headers: {
-          "content-type": "multipart/form-data"
-        }
-      };
-
       if (focusGroupId != null) {
         axios
           .post("https://focusup-sfhacks2022.uc.r.appspot.com/api/createpost", {

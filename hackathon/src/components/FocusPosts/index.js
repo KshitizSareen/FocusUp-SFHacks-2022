@@ -43,7 +43,7 @@ const FocusPosts = (props) => {
             {props.description}
           </div>
 
-          <MainButton text="View Comments" />
+          <MainButton text="View Comments" focusGroupID={props.focusGroupID} />
         </Paper>
       </Box>
     </div>
