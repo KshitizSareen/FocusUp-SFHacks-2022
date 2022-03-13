@@ -4,20 +4,19 @@ import { Paper, Box } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import storage from '../../Firebase';
-import { ref,getDownloadURL } from "firebase/storage";
+import { ref,getDownloadURL,uploadBytes } from "firebase/storage";
 
 const CreatePostForm = () => {
-  const [uploaded_pic, setUploadedPic] = useState("");
-  const [nickName, setNickName] = useState("");
-  const [description, setDescription] = useState("");
+  const [uploaded_pic, setUploadedPic] = useState();
+  const [nickName, setNickName] = useState();
+  const [description, setDescription] = useState();
 
   const location = useLocation();
   const focusGroupId = location.state.focusGroupId;
   const focusGroupName = location.state.focusGroupName;
 
-  const handlePhotoUpload = (event) => {
+  const handlePhotoUpload = async (event) => {
     setUploadedPic(event.target.files[0]);
-    console.log(event.target.files[0]);
   };
 
   const handleFocusDescription = (event) => {
@@ -36,12 +35,13 @@ const CreatePostForm = () => {
     } else {
       const formData = new FormData();
       let urls=[];
-      if(uploaded_pic!="")
+      if(uploaded_pic!=null)
       {
-        const imageRef=await ref(storage,uploaded_pic);
-        const imageUrl=await getDownloadURL(imageRef)
-        formData.append("image", imageUrl);
-        urls.push(imageUrl);
+        const imageRef=ref(storage,uploaded_pic.name)
+        await uploadBytes(imageRef,uploaded_pic);
+        const downloadUrl=await getDownloadURL(imageRef);
+        urls.push(downloadUrl);
+        formData.append("imageFile",downloadUrl);
       }
       formData.append("nickName", nickName);
       formData.append("description", description);
@@ -53,6 +53,9 @@ const CreatePostForm = () => {
         }
       };
 
+      if(focusGroupId!=null)
+      {
+
       axios.post('https://focusup-sfhacks2022.uc.r.appspot.com/api/createpost',{
         "focusGroupID" : focusGroupId,
         "description": description,
@@ -62,6 +65,7 @@ const CreatePostForm = () => {
       }).catch(err=>{
         console.log(err);
       })
+    }
 
       //   axios
       //     .post(
