@@ -12,7 +12,7 @@ Users shall be able to browse other users' posts and read their struggle stories
 
 Users shall be able to create their own struggle stories, recovery stories anonymously.
 
- Users shall be able to chat with each other if they have something in common and are planning a meetup in person.
+Users shall be able to chat with each other if they have something in common and are planning a meetup in person.
 
 ## How we built it
 
@@ -35,6 +35,10 @@ We also had a team member leave us at the last moment, which was kind of demotiv
 ## Accomplishments that we're proud of
 
 We are very proud that we developed something which will raise public awareness towards mental health. Also, the precision of the application outlines all of our hard work as well as dedication. We started it from scratch and finished all the small details in time. 
+
+We also built the entire API, backend services, front-end and hosted them on the app engine in a span of 42 hours.
+
+We also made sure to keep our app scalable, if there is a large user load.
 
 ## What we learned
 
