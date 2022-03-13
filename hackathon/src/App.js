@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FocusPosts from "./pages/FocusPosts";
 import CreateFocusPostPage from "./pages/CreateFocusPost";
+import Chat from "./pages/Chat";
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
           path="/focusUp/createPost/:name/:id"
           exact
           component={CreateFocusPostPage}
+        />
+        <Route
+          path="/focusUp/Chat/:name/:id"
+          exact
+          component={Chat}
         />
 
         {/* <Route path="*" component={NotFound} /> */}

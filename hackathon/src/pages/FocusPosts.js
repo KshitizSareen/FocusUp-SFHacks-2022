@@ -37,6 +37,16 @@ const FocusPosts = () => {
     });
   };
 
+  const goToChat= ()=> {
+    history.push({
+      pathname:  `/focusUp/Chat/${focusGroupName}/${focusGroupId}`,
+      state: {
+        focusGroupId: focusGroupId,
+        focusGroupName: focusGroupName
+      }
+    });
+  };
+
   return (
     <div>
       <Navbar title={`${focusGroupName} is Temporary`}></Navbar>
@@ -45,6 +55,9 @@ const FocusPosts = () => {
           <Row>
             <Button className={styles.buttons} onClick={() => goToCreatePost()}>
               Create a Post and Share your Thoughts
+            </Button>
+            <Button className={styles.buttons} onClick={() => goToChat()}>
+              Go to chat
             </Button>
           </Row>
           <Row>

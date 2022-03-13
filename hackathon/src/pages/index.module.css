@@ -3,6 +3,7 @@ button {
   border: #6d9e3b !important;
   color: fff !important;
   z-index: 100;
+  margin-bottom: 1%;
 }
 
 .container {
