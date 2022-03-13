@@ -20,7 +20,7 @@ const Chat = (props) => {
     getMessages();
     let interval = setInterval(() => {
       getMessages();
-    }, 30000);
+    }, 1000);
     return () => {
       clearInterval(interval);
     };
