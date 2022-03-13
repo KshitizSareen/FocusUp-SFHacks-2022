@@ -17,6 +17,31 @@ What it does
 
 * Users shall be able to chat with each other if they have something in common and are planning a meetup in person.
 
+Video Demo 
+
+Screenshot
+
+How we built it
+
+Challenges we ran into
+
+
+Accomplishment
+*  We are very proud that we developed something which will raise public awareness towards mental health. Also, the precision of the application outlines all of our hard work as well as dedication. We started it from scratch and finished all the small details in time. 	
+
+What’s next for FocusUp
+* Users shall be able to post live videos.
+* Collaboration with Centers for Disease Control and Prevention.
+* Adding more focus groups. 
+* Adding features to find a nearby mental health therapy center.
+* Enable phone call to 911 in case of emergency.
+
+What we learned 
+* Domain knowledge
+* How to act on time in a team settings
+* Designing UI/UX
+* Frontend and Backend development
+* Strategic planning
 
 
 
